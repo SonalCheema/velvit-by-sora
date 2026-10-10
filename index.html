@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>VELVIT by Sora — Reserve Your Piece</title>
+<meta name="description" content="VELVIT by Sora — hand-crafted, made-to-order fashion. Choose your country and size, then reserve your piece.">
+<meta name="theme-color" content="#0a2e2b">
+<meta property="og:title" content="VELVIT by Sora — Reserve Your Piece">
+<meta property="og:description" content="Hand-crafted, made-to-order. Pick your size, reserve your piece.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal-deepest:#041e1c;
+    --teal-deep:#0a2e2b;
+    --teal-mid:#124743;
+    --gold:#d4af37;
+    --gold-soft:#e8cd7a;
+    --gold-line:rgba(212,175,55,.35);
+    --ivory:#f3ede0;
+    --ivory-dim:rgba(243,237,224,.72);
+    --glass-bg:rgba(0,20,20,.2);
+    --shadow-deep:rgba(2,12,11,.6);
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Montserrat',sans-serif;
+    background:var(--teal-deepest);
+    color:var(--ivory);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    -webkit-tap-highlight-color:transparent;
+  }
+  img{max-width:100%;display:block;}
+  button{font:inherit;}
+  .sr-only{
+    position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+    overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;
+  }
+
+  /* ============================
+     CUSTOM LOGO STYLING
+  ============================ */
+  .brand-logo {
+    max-width: 55px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    mix-blend-mode: screen; 
+  }
+  .footer-logo .brand-logo {
+    max-width: 55px;
+  }
+
+ /* ============================
+     ROOMS (Backgrounds for Lookbook)
+  ============================ */
+  .room{
+    position:relative;
+    min-height:100vh;
+    min-height:100dvh;
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-color:var(--teal-deep);
+    overflow:hidden;
+    padding:2rem 1.25rem;
+  }
+  .room::before{content:'';position:absolute;inset:0;z-index:1;}
+  .room>*{position:relative;z-index:2;}
+
+  .room-2{background-image:url('royal-room-2.jpeg');padding:3.5rem 0 4rem;}
+  .room-3{background-image:url('royal-room-3.jpeg');padding:3.5rem 0 4rem;}
+  .room-4{background-image:url('royal-room-5.jpeg');padding:3.5rem 0 4rem;} 
+  .room-5{background-image:url('royal-room-6.jpeg');padding:3.5rem 0 4rem;} 
+  
+  .room-2::before, .room-4::before {background:linear-gradient(180deg,rgba(3,18,16,.82) 0%,rgba(4,28,26,.5) 25%,rgba(3,18,16,.88) 100%);}
+  .room-3::before, .room-5::before {background:linear-gradient(180deg,rgba(3,18,16,.78) 0%,rgba(4,28,26,.42) 30%,rgba(3,18,16,.85) 100%);}
+
+  /* ============================
+     CHECKOUT ROOM (Room 7)
+  ============================ */
+  .room-7{
+    background-image:url('checkout-bg.jpeg'); /* Add your background image file name here */
+    padding:3.5rem 0 4rem;
+  }
+  .room-7::before{background:linear-gradient(180deg,rgba(3,18,16,.85) 0%,rgba(4,24,22,.65) 35%,rgba(2,12,11,.98) 100%);}
+
+  /* ============================
+     HERO CAROUSEL & HEADER
+  ============================ */
+  #hero .hero-carousel{position:absolute;inset:0;overflow:hidden;z-index:0;}
+  .carousel-slide{
+    position:absolute;inset:0;
+    background-size:cover;
+    background-position: center top;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    background-color:var(--teal-deep);
+    opacity:0;
+    animation:carouselFade 24s infinite; 
+    animation-fill-mode:backwards;
+  }
+  .slide-1{background-image:url('carousel-1.jpeg');animation-delay:0s;}
+  .slide-2{background-image:url('carousel-2.jpeg');animation-delay:4s;}
+  .slide-3{background-image:url('carousel-3.jpeg');animation-delay:8s;}
+  .slide-4{background-image:url('carousel-4.jpeg');animation-delay:12s;}
+  .slide-5{background-image:url('carousel-5.jpeg');animation-delay:16s;}
+  .slide-6{background-image:url('carousel-6.jpeg');animation-delay:20s;}
+  
+  @keyframes carouselFade{
+    0%{opacity:0;}
+    3%{opacity:1;}
+    13.3%{opacity:1;}
+    16.6%{opacity:0;}
+    100%{opacity:0;}
+  }
+  #hero::before{background:linear-gradient(180deg,rgba(4,24,22,.5) 0%,rgba(4,24,22,.62) 55%,rgba(3,18,16,.9) 100%);}
+
+  .hero-header{
+    position:absolute;
+    top: 4rem; 
+    left:50%;
+    transform:translateX(-50%);
+    z-index: 2; 
+    text-align:center;
+  }
+  .hero-brand{
+    font-family:'Cinzel',serif;
+    font-size:1.4rem; 
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--ivory);
+    text-shadow:0 1px 8px rgba(0,0,0,.75);
+    text-align: center; 
+  }
+  .hero-brand .by{
+    display: block; 
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size: 1rem;
+    font-weight:400;
+    text-transform:none;
+    letter-spacing:.04em;
+    color:var(--gold-soft);
+    margin-top: 0.2rem;
+  }
+
+  .hero-quote-container {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    width: 90%;
+    max-width: 700px;
+    height: 60px;
+  }
+  .hero-quote {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: carouselFade 24s infinite;
+    animation-fill-mode: backwards;
+  }
+  .hero-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--ivory);
+    text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+    margin-bottom: 0.4rem;
+  }
+  .hero-quote span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .q-1 { animation-delay: 0s; }
+  .q-2 { animation-delay: 4s; }
+  .q-3 { animation-delay: 8s; }
+  .q-4 { animation-delay: 12s; }
+  .q-5 { animation-delay: 16s; }
+  .q-6 { animation-delay: 20s; }
+
+  /* ============================
+     WAITLIST CARD
+  ============================ */
+  .waitlist-card{
+    width:min(90vw,410px);
+    background:var(--glass-bg);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    border:1px solid rgba(212,175,55,.55);
+    border-radius:6px;
+    padding:2.5rem 1.5rem 1.85rem;
+    box-shadow:0 25px 60px var(--shadow-deep),inset 0 1px 0 rgba(255,255,255,.06);
+    animation:cardReveal 1.2s cubic-bezier(.16,1,.3,1) both;
+  }
+  @supports not (backdrop-filter:blur(1px)){
+    .waitlist-card{background:rgba(9,41,38,.92);}
+  }
+  @keyframes cardReveal{
+    from{opacity:0;transform:translateY(24px) scale(.98);}
+    to{opacity:1;transform:translateY(0) scale(1);}
+  }
+  .card-fade-out{opacity:0;transform:scale(.97);pointer-events:none;transition:opacity .5s ease,transform .5s ease;}
+
+  .card-close{
+    position:absolute;top:.85rem;right:.85rem;
+    width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--gold-line);
+    border-radius:50%;color:var(--gold-soft);font-size:.8rem;line-height:1;
+    cursor:pointer;touch-action:manipulation;
+    transition:background .3s ease,color .3s ease;
+  }
+  .card-close:hover{background:var(--gold);color:var(--teal-deepest);}
+
+  .product-frame{
+    width:min(58vw,180px);
+    aspect-ratio:3/4;
+    margin:0 auto 1.1rem;
+    padding:0; 
+    border:1px solid rgba(212,175,55,.6);
+    border-radius:4px;
+    background:transparent; 
+    overflow: hidden;
+  }
+  .product-frame img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;}
+
+  .product-name{
+    font-family:'Cinzel',serif;font-weight:600;
+    font-size:1.1rem;letter-spacing:.03em;
+    color:var(--ivory);text-align:center;margin-bottom:1.15rem;
+    text-shadow:0 1px 10px rgba(0,0,0,.7);
+  }
+
+  .card-row{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:.9rem;}
+  .field-group{flex:1 1 130px;text-align:left;}
+  .field-label{
+    display:block;font-family:'Montserrat',sans-serif;
+    font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:.35rem;
+    text-shadow:0 1px 6px rgba(0,0,0,.6);
+  }
+  .card-select{
+    width:100%;background:rgba(0,0,0,.2);
+    border:1px solid var(--gold-line);border-radius:2px;
+    color:var(--ivory);font-family:'Montserrat',sans-serif;font-size:.82rem;
+    padding:.55rem .5rem;outline:none;
+    -webkit-appearance:none;appearance:none;
+    background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23d4af37' stroke-width='1.3'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:right .6rem center;background-size:10px 7px;
+  }
+  .card-select:focus{border-color:var(--gold);}
+  .card-select:disabled{opacity:.45;}
+
+  .card-price{
+    text-align:center;font-family:'Cinzel',serif;font-size:1.45rem;
+    color:var(--gold-soft);letter-spacing:.03em;margin-bottom:1rem;
+    text-shadow:0 1px 10px rgba(0,0,0,.7);
+  }
+
+  .btn-text-gold{
+    display:block;margin:0 auto 1rem;background:none;border:none;
+    font-family:'Montserrat',sans-serif;font-size:.68rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold-soft);cursor:pointer;text-decoration:underline;text-underline-offset:3px;
+    padding:.3rem;touch-action:manipulation;
+  }
+
+  .custom-size-fields{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem;}
+  .custom-size-fields input{
+    width:100%;background:rgba(0,0,0,.2);border:1px solid var(--gold-line);border-radius:2px;
+    color:var(--ivory);font-family:'Montserrat',sans-serif;font-size:.8rem;
+    padding:.55rem .6rem;outline:none;
+  }
+  .custom-size-fields input::placeholder{color:rgba(243,237,224,.5);}
+  .custom-size-fields input:focus{border-color:var(--gold);}
+
+  .trust-signal{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.84rem;line-height:1.5;
+    color:var(--ivory-dim);text-align:center;margin-bottom:1rem;
+    text-shadow:0 1px 8px rgba(0,0,0,.65);
+  }
+
+  .scarcity-tracker{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-bottom:1.3rem;}
+  .pulse-dot{
+    width:8px;height:8px;border-radius:50%;background:#e0574a;flex-shrink:0;
+    box-shadow:0 0 0 0 rgba(224,87,74,.6);
+    animation:pulseDot 1.8s infinite;
+  }
+  @keyframes pulseDot{
+    0%{box-shadow:0 0 0 0 rgba(224,87,74,.55);}
+    70%{box-shadow:0 0 0 8px rgba(224,87,74,0);}
+    100%{box-shadow:0 0 0 0 rgba(224,87,74,0);}
+  }
+  .scarcity-text{font-size:.72rem;letter-spacing:.02em;color:var(--ivory-dim);text-shadow:0 1px 6px rgba(0,0,0,.6);}
+
+  .cta-full{width:100%;}
+  .btn-gold{
+    font-family:'Montserrat',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--teal-deepest);background:linear-gradient(135deg,var(--gold-soft),var(--gold));
+    border:none;padding:.95rem 1.4rem;cursor:pointer;border-radius:2px;touch-action:manipulation;
+    transition:transform .35s ease,box-shadow .35s ease;box-shadow:0 8px 24px rgba(212,175,55,.25);
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(212,175,55,.42);}
+  .btn-gold:active{transform:translateY(0);}
+
+  .no-payment-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--gold-soft);
+    text-align: center;
+    margin-top: 0.85rem;
+    line-height: 1.4;
+  }
+
+  /* ============================
+     MODALS
+  ============================ */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:50;
+    background:rgba(2,12,11,.75);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    display:flex;align-items:center;justify-content:center;padding:1.25rem;
+    opacity:0;animation:modalFadeIn .35s ease forwards;
+  }
+  .modal-overlay[hidden]{display:none;}
+  @keyframes modalFadeIn{from{opacity:0;}to{opacity:1;}}
+
+  .modal-box{
+    position:relative;width:min(92vw,430px);max-height:88vh;overflow-y:auto;
+    background:var(--teal-deep);border:1px solid rgba(212,175,55,.5);border-radius:6px;
+    padding:2.25rem 1.75rem 1.75rem;box-shadow:0 30px 70px rgba(0,0,0,.55);
+    transform:translateY(14px);opacity:0;
+    animation:modalRise .4s cubic-bezier(.16,1,.3,1) forwards;
+  }
+  @keyframes modalRise{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+  .modal-close{
+    position:absolute;top:.85rem;right:.85rem;width:28px;height:28px;
+    display:flex;align-items:center;justify-content:center;
+    background:transparent;border:1px solid var(--gold-line);border-radius:50%;
+    color:var(--gold-soft);font-size:.8rem;cursor:pointer;touch-action:manipulation;
+    transition:background .3s ease,color .3s ease;
+  }
+  .modal-close:hover{background:var(--gold);color:var(--teal-deepest);}
+
+  .modal-title{font-family:'Cinzel',serif;font-weight:600;font-size:1.1rem;letter-spacing:.03em;color:var(--ivory);margin-bottom:.9rem;}
+  .modal-copy{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;line-height:1.65;color:var(--ivory-dim);margin-bottom:1.5rem;}
+
+  .modal-box form{display:flex;flex-direction:column;gap:1rem;}
+  .modal-field label{
+    display:block;font-family:'Montserrat',sans-serif;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--gold-soft);margin-bottom:.35rem;
+  }
+  .modal-box input,.modal-box textarea{
+    width:100%;background:transparent;border:none;border-bottom:1px solid var(--gold-line);
+    padding:.6rem .1rem;color:var(--ivory);font-family:'Montserrat',sans-serif;font-size:16px;
+    outline:none;transition:border-color .3s ease;resize:vertical;
+  }
+  .modal-box input::placeholder,.modal-box textarea::placeholder{color:rgba(243,237,224,.45);}
+  .modal-box input:focus,.modal-box textarea:focus{border-color:var(--gold);}
+
+  .modal-success{display:none;text-align:center;padding:.5rem 0;}
+  .modal-success[data-show]{display:block;}
+  .modal-success p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--gold-soft);}
+
+  /* ============================
+     LOOKBOOK MASONRY
+  ============================ */
+  .section-header{text-align:center;padding:0 1.25rem 2.25rem;max-width:520px;margin:0 auto;}
+  .section-header h2{
+    font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.6rem,6vw,2.3rem);
+    letter-spacing:.06em;margin:.6rem 0 .8rem;
+  }
+  .section-header p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02rem;color:var(--ivory-dim);}
+  .eyebrow{
+    font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:500;letter-spacing:.32em;
+    color:var(--gold-soft);text-transform:uppercase;margin-bottom:.9rem;text-shadow:0 1px 8px rgba(0,0,0,.7);
+  }
+
+  .masonry {
+    column-count: 2;
+    column-gap: 20px; 
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 1rem 4rem;
+    margin: 0 auto;
+  }
+  @media (min-width: 640px) {
+    .masonry {
+      column-count: 4;
+      column-gap: 30px; 
+    }
+  }
+
+  .masonry-item {
+    display: inline-block; 
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px; 
+    background-color: var(--teal-deep); 
+    border: 1px solid var(--gold-line); 
+    border-radius: 4px;
+    box-shadow: 0 10px 25px rgba(0,0,0,.4);
+    cursor: pointer;
+    touch-action: manipulation;
+    overflow: hidden; 
+  }
+
+  html.js .masonry-item{opacity:0;}
+  .masonry-item.visible{animation:floatFadeIn 1s cubic-bezier(.16,1,.3,1) forwards;}
+  @keyframes floatFadeIn{from{opacity:0;transform:translateY(46px);}to{opacity:1;transform:translateY(0);}}
+
+  .masonry-item img {
+    width: 100%;
+    height: auto; 
+    object-fit: contain; 
+    display: block;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+  }
+  
+  .masonry-item:hover img {
+    transform: scale(1.05); 
+  }
+
+  .look-tag {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1rem .85rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: .9rem;
+    color: var(--ivory);
+    text-align: center;
+    background: linear-gradient(0deg, rgba(3,18,16,.95) 20%, transparent);
+  }
+
+  /* ============================
+     ROOM 7 — PRE-ORDER CONTENT
+  ============================ */
+  .room7-inner{width:100%;max-width:1000px;display:flex;flex-direction:column;align-items:center;gap:2.5rem;padding:0 1.25rem;}
+  @media (min-width:900px){.room7-inner{flex-direction:row;align-items:center;}.room7-copy{text-align:left;}}
+  .room7-card-wrap{flex:0 0 auto;}
+  .room7-copy{flex:1 1 300px;text-align:center;}
+  .room7-copy h2{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(1.5rem,5vw,2rem);letter-spacing:.05em;margin:.5rem 0 1rem;}
+  .room7-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;line-height:1.75;color:var(--ivory-dim);max-width:440px;margin:0 auto;}
+  @media (min-width:900px){.room7-text{margin:0;}}
+
+/* ============================
+     FOOTER
+  ============================ */
+  .site-footer {
+    position: relative;
+    background: var(--teal-deepest);
+    border-top: none; 
+    padding: 3.5rem 1.5rem 2.5rem;
+    overflow: hidden;
+  }
+  
+  .site-footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(4,30,28,0.7) 0%, rgba(3,18,16,0.6) 100%);
+    z-index: 1;
+  }
+  .footer-inner{
+    position: relative;
+    z-index: 2; 
+    max-width:520px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:2rem;
+    text-align:center;
+  }
+  .social-icons{display:flex;gap:1.1rem;}
+  .social-icons a{
+    width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--gold-line);border-radius:50%;transition:border-color .3s ease,background .3s ease;
+  }
+  .social-icons a:hover{border-color:var(--gold);background:rgba(212,175,55,.1);}
+
+  .partnership-links{display:flex;flex-direction:column;gap:.7rem;}
+  .partnership-links button{
+    background:none;border:none;cursor:pointer;touch-action:manipulation;
+    font-family:'Montserrat',sans-serif;font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--ivory-dim);text-decoration:underline;text-underline-offset:3px;transition:color .3s ease;padding:.2rem;
+  }
+  .partnership-links button:hover{color:var(--gold);}
+
+  .contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:1.3rem;}
+  .contact-links a{color:var(--ivory-dim);font-size:.72rem;letter-spacing:.04em;text-decoration:none;transition:color .3s ease;}
+  .contact-links a:hover{color:var(--gold);}
+
+  .newsletter{width:100%;max-width:340px;}
+  .newsletter p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.95rem;color:var(--ivory-dim);margin-bottom:.9rem;}
+  .newsletter form{display:flex;gap:.5rem;}
+  .newsletter input{
+    flex:1;min-width:0;background:transparent;border:none;border-bottom:1px solid var(--gold-line);
+    padding:.55rem .1rem;color:var(--ivory);font-family:'Montserrat',sans-serif;font-size:16px;outline:none;
+  }
+  .newsletter input::placeholder{color:rgba(243,237,224,.45);}
+  .newsletter input:focus{border-color:var(--gold);}
+  .newsletter button{
+    background:var(--gold);border:none;color:var(--teal-deepest);
+    font-family:'Montserrat',sans-serif;font-size:.66rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+    padding:0 1rem;border-radius:2px;cursor:pointer;touch-action:manipulation;
+  }
+  .newsletter-success{display:none;font-size:.72rem;color:var(--gold-soft);margin-top:.6rem;}
+  .newsletter-success.show{display:block;}
+
+  .copyright{font-size:.62rem;letter-spacing:.05em;color:rgba(243,237,224,.4);}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
+    .carousel-slide{animation-play-state:paused !important;opacity:0 !important;}
+    .slide-1{opacity:1 !important;}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="room" id="hero" aria-label="Hero">
+    <div class="hero-carousel" aria-hidden="true">
+      <div class="carousel-slide slide-1"></div>
+      <div class="carousel-slide slide-2"></div>
+      <div class="carousel-slide slide-3"></div>
+      <div class="carousel-slide slide-4"></div>
+      <div class="carousel-slide slide-5"></div>
+      <div class="carousel-slide slide-6"></div>
+    </div>
+
+    <!-- Top Left Brand -->
+    <div style="position: absolute; top: 1.5rem; left: 1.5rem; z-index: 10;">
+      <p class="hero-brand" style="font-size: 1rem;">VELVIT <span class="by">by Sora</span></p>
+    </div>
+    
+    <!-- TOP LOGO -->
+    <div class="hero-header">
+      <img src="Logo.png" alt="Velvit Logo" class="brand-logo">
+    </div>
+
+   <!-- QUALITY QUOTES AT BOTTOM OF CAROUSEL -->
+    <div class="hero-quote-container">
+      <div class="hero-quote q-1">
+        <p>"True luxury is the marriage of flawless fabric and absolute precision."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+      <div class="hero-quote q-2">
+        <p>"Hand-crafted, piece by piece, to reflect your unique elegance."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+      <div class="hero-quote q-3">
+        <p>"Where tradition meets modern sophistication."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+      <div class="hero-quote q-4">
+        <p>"Every stitch tells a story of passion and artistry."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+      <div class="hero-quote q-5">
+        <p>"Uncompromising quality for the uncompromising individual."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+      <div class="hero-quote q-6">
+        <p>"Designed to captivate. Tailored to empower."</p>
+        <span>— The VELVIT Standard</span>
+      </div>
+    </div>
+
+    <div class="waitlist-card" id="waitlistCard">
+      <button type="button" class="card-close" id="cardClose" aria-label="Close">&#10005;</button>
+
+      <div class="product-frame">
+        <img src="dress-1.png" alt="The Crimson Blossom Set" id="cardProductImg">
+      </div>
+
+      <h2 class="product-name" id="cardProductName">The Crimson Blossom Set</h2>
+
+      <div class="card-row">
+        <div class="field-group">
+          <label for="countrySelect" class="field-label">Country</label>
+          <select id="countrySelect" class="card-select">
+            <option value="US">United States</option>
+            <option value="GB">United Kingdom</option>
+            <option value="IN">India</option>
+            <option value="CA">Canada</option>
+            <option value="AU">Australia</option>
+            <option value="DE">Germany</option>
+            <option value="FR">France</option>
+            <option value="AE">United Arab Emirates</option>
+            <option value="SG">Singapore</option>
+            <option value="JP">Japan</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="sizeSelect" class="field-label" id="sizeLabel">Size</label>
+          <select id="sizeSelect" class="card-select"></select>
+        </div>
+      </div>
+
+      <p class="card-price" id="cardPrice">$185</p>
+
+      <button type="button" class="btn-text-gold" id="customSizeToggle">+ Custom Size</button>
+
+      <div class="custom-size-fields" id="customSizeFields" hidden>
+        <div><label class="sr-only" for="bustInput">Bust, inches</label><input type="number" id="bustInput" placeholder="Bust (in)" min="20" max="60"></div>
+        <div><label class="sr-only" for="waistInput">Waist, inches</label><input type="number" id="waistInput" placeholder="Waist (in)" min="18" max="60"></div>
+        <div><label class="sr-only" for="hipsInput">Hips, inches</label><input type="number" id="hipsInput" placeholder="Hips (in)" min="20" max="65"></div>
+        <div><label class="sr-only" for="lengthInput">Length, inches</label><input type="number" id="lengthInput" placeholder="Length (in)" min="20" max="70"></div>
+      </div>
+
+      <p class="trust-signal">Custom-made by hand specifically for you. We guarantee 100% original, premium quality.</p>
+
+      <div class="scarcity-tracker">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        <span class="scarcity-text" id="scarcityText">High Demand: Only 45 out of 300 outfits left.</span>
+      </div>
+
+      <button type="button" class="btn-gold cta-full" id="ctaButton">Reserve this limited edition</button>
+      <p class="no-payment-text">No payment required today. You will receive a secure invoice via email to confirm your custom piece.</p>
+    </div>
+  </section>
+
+ <!-- ROOM 1 (Looks 1-8) -->
+  <section class="room room-2" id="lookbook">
+    <div class="section-header">
+      <p class="eyebrow">The Lookbook</p>
+      <h2>Made To Order</h2>
+      <p>Bespoke craftsmanship. Click any design to select your size.</p>
+    </div>
+    <div class="masonry">
+      <figure class="masonry-item" data-product-id="p1"><img src="dress-1.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Crimson Blossom Set</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p2"><img src="dress-2.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Emerald Velvet Cardigan</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p3"><img src="dress-3.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Palace Wide-Leg Trouser</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p4"><img src="dress-4.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Gold-Threaded Wrap</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p5"><img src="dress-5.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Royal Teal Bomber</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p6"><img src="dress-6.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Embroidered Silk Blouse</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p7"><img src="dress-7.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Brushed Gold Dress</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p8"><img src="dress-8.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Jade Court Overcoat</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ROOM 2 (Looks 9-16) -->
+  <section class="room room-3">
+    <div class="masonry">
+      <figure class="masonry-item" data-product-id="p9"><img src="dress-9.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Midnight Azure Gown</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p10"><img src="dress-10.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Ivory Lace Two-Piece</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p11"><img src="dress-11.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Sapphire Star Corset</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p12"><img src="dress-12.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Obsidian Crepe Suit</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p13"><img src="dress-13.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Amethyst Chiffon Gown</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p14"><img src="dress-14.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Pearl Embellished Top</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p15"><img src="dress-15.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Ruby Velvet Blazer</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p16"><img src="dress-16.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Opal Shimmer Skirt</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ROOM 3 (Looks 17-24) -->
+  <section class="room room-4">
+    <div class="masonry">
+      <figure class="masonry-item" data-product-id="p17"><img src="dress-17.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Bronze Sequin Halter</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p18"><img src="dress-18.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Platinum Fringe Dress</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p19"><img src="dress-19.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Violet Silk Camisole</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p20"><img src="dress-20.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Rosewood Tailored Coat</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p21"><img src="dress-21.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Cerulean Drape Midi</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p22"><img src="dress-22.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Topaz Beaded Bodice</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p23"><img src="dress-23.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Onyx Satin Trousers</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p24"><img src="dress-24.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Coral Guipure Lace</figcaption></figure>
+    </div>
+  </section>
+
+  <!-- ROOM 4 (Looks 25-32) -->
+  <section class="room room-5">
+    <div class="masonry">
+      <figure class="masonry-item" data-product-id="p25"><img src="dress-25.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Silver Pleated Maxi</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p26"><img src="dress-26.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Garnet Wrap Cardigan</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p27"><img src="dress-27.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Amber Jacquard Skirt</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p28"><img src="dress-28.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Turquoise Flare Pants</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p29"><img src="dress-29.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Diamond Weave Tunic</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p30"><img src="dress-30.png" alt="Look" loading="lazy"><figcaption class="look-tag">The Floral Motif Gown</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p31"><img src="dress-31.png" alt="Look" loading="lazy"><figcaption class="look-tag">Look 31</figcaption></figure>
+      <figure class="masonry-item" data-product-id="p32"><img src="dress-32.png" alt="Look" loading="lazy"><figcaption class="look-tag">Look 32</figcaption></figure>
+    </div>
+  </section>
+
+   <!-- THE CHECKOUT ROOM (Room 7) -->
+  <section class="room room-7" id="checkout-room" aria-label="Reserve your piece">
+    <div class="room7-inner">
+      <div class="room7-card-wrap">
+        <div class="waitlist-card" id="waitlistCard2">
+          <div class="product-frame">
+            <img src="dress-1.png" alt="The Crimson Blossom Set" id="cardProductImg2">
+          </div>
+          <h2 class="product-name" id="cardProductName2">The Crimson Blossom Set</h2>
+          <div class="card-row">
+            <div class="field-group">
+              <label for="countrySelect2" class="field-label">Country</label>
+              <select id="countrySelect2" class="card-select">
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="IN">India</option>
+                <option value="CA">Canada</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="AE">United Arab Emirates</option>
+                <option value="SG">Singapore</option>
+                <option value="JP">Japan</option>
+              </select>
+            </div>
+            <div class="field-group">
+              <label for="sizeSelect2" class="field-label" id="sizeLabel2">Size</label>
+              <select id="sizeSelect2" class="card-select"></select>
+            </div>
+          </div>
+          <p class="card-price" id="cardPrice2">$185</p>
+          <button type="button" class="btn-text-gold" id="customSizeToggle2">+ Custom Size</button>
+          <div class="custom-size-fields" id="customSizeFields2" hidden>
+            <div><label class="sr-only" for="bustInput2">Bust, inches</label><input type="number" id="bustInput2" placeholder="Bust (in)" min="20" max="60"></div>
+            <div><label class="sr-only" for="waistInput2">Waist, inches</label><input type="number" id="waistInput2" placeholder="Waist (in)" min="18" max="60"></div>
+            <div><label class="sr-only" for="hipsInput2">Hips, inches</label><input type="number" id="hipsInput2" placeholder="Hips (in)" min="20" max="65"></div>
+            <div><label class="sr-only" for="lengthInput2">Length, inches</label><input type="number" id="lengthInput2" placeholder="Length (in)" min="20" max="70"></div>
+          </div>
+          <p class="trust-signal">Custom-made by hand specifically for you. We guarantee 100% original, premium quality.</p>
+          <div class="scarcity-tracker">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            <span class="scarcity-text" id="scarcityText2">High Demand: Only 45 out of 300 outfits left.</span>
+          </div>
+          <button type="button" class="btn-gold cta-full" id="ctaButton2">Reserve this limited edition</button>
+          <p class="no-payment-text">No payment required today. You will receive a secure invoice via email to confirm your custom piece.</p>
+        </div>
+      </div>
+      <div class="room7-copy">
+        <p class="eyebrow">The Craft</p>
+        <h2>Made By Hand, Piece By Piece</h2>
+        <p class="room7-text">Every piece begins with hand-selected, premium fabric. Our artisans layer each floral motif by hand, building the raised 3D embroidery stitch by stitch until it holds its shape. It's slow work, on purpose — the kind that can't be rushed onto a factory line.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<div class="modal-overlay" id="preorderModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Save your spot">
+    <button type="button" class="modal-close" data-close-modal aria-label="Close">&#10005;</button>
+    <p class="modal-copy">You're almost there! Enter your email to confirm your reservation. We will notify you first when the piece is ready, and send you exclusive updates on how it's being made.</p>
+    
+    <!-- FIX: Hidden inputs now pass the exact product name, price, and sizes directly to Formspree -->
+    <form id="preorderForm" action="https://formspree.io/f/xgavqjay" method="POST">
+      <input type="hidden" name="Product_Name" id="hiddenProductName">
+      <input type="hidden" name="Price" id="hiddenPrice">
+      <input type="hidden" name="Country" id="hiddenCountry">
+      <input type="hidden" name="Size" id="hiddenSize">
+      <input type="hidden" name="Custom_Bust" id="hiddenBust">
+      <input type="hidden" name="Custom_Waist" id="hiddenWaist">
+      <input type="hidden" name="Custom_Hips" id="hiddenHips">
+      <input type="hidden" name="Custom_Length" id="hiddenLength">
+
+      <div class="modal-field">
+        <label class="sr-only" for="preorderEmail">Email address</label>
+        <input type="email" id="preorderEmail" name="Email" placeholder="Your email" required>
+      </div>
+      <button type="submit" class="btn-gold">Confirm Reservation</button>
+    </form>
+    <div class="modal-success" id="preorderSuccess"><p>✓ Reservation Confirmed.</p></div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="partnershipModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Partnership application">
+    <button type="button" class="modal-close" data-close-modal aria-label="Close">&#10005;</button>
+    <p class="modal-title" id="partnershipModalTitle">Become an Affiliate</p>
+    <form id="partnershipForm" action="https://formspree.io/f/xgavqjay" method="POST">
+      <div class="modal-field"><label for="partnershipName">Name</label><input type="text" id="partnershipName" name="Name" required></div>
+      <div class="modal-field"><label for="partnershipPhone">Phone Number</label><input type="tel" id="partnershipPhone" name="Phone" required></div>
+      <div class="modal-field"><label for="partnershipEmail">Email</label><input type="email" id="partnershipEmail" name="Email" required></div>
+      <div class="modal-field"><label for="partnershipSocial">Social Media Links</label><input type="text" id="partnershipSocial" name="Social_Links" placeholder="Instagram, TikTok, etc."></div>
+            <div class="modal-field"><label for="partnershipDetails">Important Details</label><textarea id="partnershipDetails" name="Details" rows="3"></textarea></div>
+      <button type="submit" class="btn-gold">Submit Application</button>
+    </form>
+    <div class="modal-success" id="partnershipSuccess"><p>✓ Application received. We'll be in touch.</p></div>
+  </div>
+</div>
+<div class="modal-overlay" id="shareModal" hidden>
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Refer a Friend">
+    <button type="button" class="modal-close" data-close-modal aria-label="Close">&#10005;</button>
+    <p class="modal-title">Refer a Friend</p>
+    <p class="modal-copy">Share VELVIT by Sora with a friend and you both get a 10% discount on your next handcrafted piece.</p>
+    
+    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+      <a href="https://api.whatsapp.com/send?text=Get%2010%25%20off%20premium%2C%20hand-crafted%20dresses%20at%20VELVIT%20by%20Sora!%20Check%20it%20out%3A%20https%3A%2F%2Fvelvitbysora.com" target="_blank" style="background:#25D366; color:white; padding:1rem; text-align:center; text-decoration:none; font-family:'Montserrat', sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; border-radius:2px;">Share on WhatsApp</a>
+      <button type="button" id="copyLinkBtn" style="background:transparent; color:var(--gold-soft); border:1px solid var(--gold-line); padding:1rem; cursor:pointer; font-family:'Montserrat', sans-serif; font-size:0.8rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; border-radius:2px; transition: border-color 0.3s ease;">Copy Store Link</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer" id="footer">
+  <div class="footer-inner">
+    <div class="social-icons">
+      <a href="https://www.instagram.com/velvit_sora?stkn=b24xZDZna3hoZnd1" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#d4af37" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4.2"/>
+          <circle cx="17.2" cy="6.8" r="1" fill="#d4af37" stroke="none"/>
+        </svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61595115473175" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#d4af37" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+        </svg>
+      </a>
+      <a href="https://www.linkedin.com/company/velvit-by-sora" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#d4af37" stroke-width="1.5" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="9" r=".6" fill="#d4af37" stroke="none"/><path d="M8 11.5v5.5M12 17v-3.3c0-1.4 1-2.2 2.1-2.2 1.2 0 1.9.8 1.9 2.2V17" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="https://x.com/Velvitbysora" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#d4af37" stroke-width="1.4" aria-hidden="true">
+          <path d="M21 6.4c-.7.3-1.4.5-2.2.6.8-.5 1.4-1.2 1.6-2.1-.7.4-1.5.8-2.4.9-.7-.7-1.7-1.2-2.8-1.2-2.1 0-3.8 1.7-3.8 3.8 0 .3 0 .6.1.8-3.2-.1-6-1.7-7.9-4-.3.6-.5 1.2-.5 2 0 1.3.7 2.5 1.7 3.2-.6 0-1.2-.2-1.7-.5v.1c0 1.9 1.3 3.4 3.1 3.8-.3.1-.7.1-1 .1-.2 0-.5 0-.7-.1.5 1.5 1.9 2.6 3.6 2.7-1.3 1-3 1.6-4.8 1.6-.3 0-.6 0-.9-.1C4.9 19 6.9 19.6 9 19.6c7 0 10.8-5.8 10.8-10.8v-.5c.7-.5 1.4-1.2 1.9-1.9z" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+
+   <div class="partnership-links">
+      <button type="button" data-topic="Become an Affiliate">Become an Affiliate</button>
+      <button type="button" data-topic="Collaborate with us">Collaborate with us</button>
+      <button type="button" data-topic="Special Offer for Influencers">Special Offer for Influencers</button>
+      <button type="button" id="shareBtn">Refer a friend and get 10% discount</button>
+    </div>
+
+    <div class="contact-links">
+      <a href="mailto:sora.velvitofficial@gmail.com">sora.velvitofficial@gmail.com</a>
+      <a href="tel:+919592962502">+91 9592962502</a>
+      <a href="tel:+447344110152">+44 7344 110152</a>
+    </div>
+
+    <div class="newsletter">
+      <p>Get updates on our premium limited editions</p>
+      <form id="newsletterForm" action="https://formspree.io/f/xgavqjay" method="POST">
+        <label class="sr-only" for="newsletterEmail">Email address</label>
+        <input type="email" id="newsletterEmail" name="Newsletter_Subscriber_Email" placeholder="Your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="newsletter-success" id="newsletterSuccess">✓ You're subscribed.</p>
+    </div>
+
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Velvit Logo" class="brand-logo">
+    </div>
+    <p class="copyright">&copy; 2026 VELVIT by Sora — India. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  var COUNTRIES = {
+    US:{symbol:'$',rate:1,standard:'US'},
+    GB:{symbol:'£',rate:0.79,standard:'UK'},
+    IN:{symbol:'₹',rate:83,standard:'IN'},
+    CA:{symbol:'C$',rate:1.37,standard:'US'},
+    AU:{symbol:'A$',rate:1.52,standard:'UK'},
+    DE:{symbol:'€',rate:0.92,standard:'UK'},
+    FR:{symbol:'€',rate:0.92,standard:'UK'},
+    AE:{symbol:'AED ',rate:3.67,standard:'US'},
+    SG:{symbol:'S$',rate:1.34,standard:'ASIA'},
+    JP:{symbol:'¥',rate:149,standard:'ASIA'}
+  };
+
+  var SIZE_STANDARDS = {
+    US:{label:'US',sizes:['XS','S','M','L','XL']},
+    UK:{label:'UK',sizes:['6','8','10','12','14','16']},
+    IN:{label:'Indian',sizes:['32','34','36','38','40','42']},
+    ASIA:{label:'Asian',sizes:['7','9','11','13','15']}
+  };
+
+  var PRODUCTS = [
+    {id:'p1',name:'The Crimson Blossom Set',price:185,cardImage:'dress-1.png'},
+    {id:'p2',name:'The Emerald Velvet Cardigan',price:165,cardImage:'dress-2.png'},
+    {id:'p3',name:'The Palace Wide-Leg Trouser',price:145,cardImage:'dress-3.png'},
+    {id:'p4',name:'The Gold-Threaded Wrap',price:225,cardImage:'dress-4.png'},
+    {id:'p5',name:'The Royal Teal Bomber',price:210,cardImage:'dress-5.png'},
+    {id:'p6',name:'The Embroidered Silk Blouse',price:150,cardImage:'dress-6.png'},
+    {id:'p7',name:'The Brushed Gold Dress',price:195,cardImage:'dress-7.png'},
+    {id:'p8',name:'The Jade Court Overcoat',price:265,cardImage:'dress-8.png'},
+    {id:'p9',name:'The Midnight Azure Gown',price:280,cardImage:'dress-9.png'},
+    {id:'p10',name:'The Ivory Lace Two-Piece',price:175,cardImage:'dress-10.png'},
+    {id:'p11',name:'The Sapphire Star Corset',price:190,cardImage:'dress-11.png'},
+    {id:'p12',name:'The Obsidian Crepe Suit',price:240,cardImage:'dress-12.png'},
+    {id:'p13',name:'The Amethyst Chiffon Gown',price:310,cardImage:'dress-13.png'},
+    {id:'p14',name:'The Pearl Embellished Top',price:160,cardImage:'dress-14.png'},
+    {id:'p15',name:'The Ruby Velvet Blazer',price:220,cardImage:'dress-15.png'},
+    {id:'p16',name:'The Opal Shimmer Skirt',price:180,cardImage:'dress-16.png'},
+    {id:'p17',name:'The Bronze Sequin Halter',price:155,cardImage:'dress-17.png'},
+    {id:'p18',name:'The Platinum Fringe Dress',price:275,cardImage:'dress-18.png'},
+    {id:'p19',name:'The Violet Silk Camisole',price:135,cardImage:'dress-19.png'},
+    {id:'p20',name:'The Rosewood Tailored Coat',price:295,cardImage:'dress-20.png'},
+    {id:'p21',name:'The Cerulean Drape Midi',price:205,cardImage:'dress-21.png'},
+    {id:'p22',name:'The Topaz Beaded Bodice',price:195,cardImage:'dress-22.png'},
+    {id:'p23',name:'The Onyx Satin Trousers',price:150,cardImage:'dress-23.png'},
+    {id:'p24',name:'The Coral Guipure Lace',price:260,cardImage:'dress-24.png'},
+    {id:'p25',name:'The Silver Pleated Maxi',price:230,cardImage:'dress-25.png'},
+    {id:'p26',name:'The Garnet Wrap Cardigan',price:170,cardImage:'dress-26.png'},
+    {id:'p27',name:'The Amber Jacquard Skirt',price:185,cardImage:'dress-27.png'},
+    {id:'p28',name:'The Turquoise Flare Pants',price:165,cardImage:'dress-28.png'},
+    {id:'p29',name:'The Diamond Weave Tunic',price:215,cardImage:'dress-29.png'},
+    {id:'p30',name:'The Floral Motif Gown',price:320,cardImage:'dress-30.png'},
+    {id:'p31',name:'The Crystal Beaded Bodice',price:245,cardImage:'dress-31.png'},
+    {id:'p32',name:'The Moonlit Chiffon Wrap',price:190,cardImage:'dress-32.png'}
+  ];
+
+  for(var i=9; i<=32; i++) {
+    PRODUCTS.push({
+      id: 'p' + i,
+      name: 'Look ' + (i < 10 ? '0'+i : i),
+      price: 185 + (i * 2),
+      cardImage: 'dress-' + i + '.png'
+    });
+  }
+
+  function findProduct(id){
+    for(var i=0;i<PRODUCTS.length;i++){ if(PRODUCTS[i].id === id){ return PRODUCTS[i]; } }
+    return null;
+  }
+
+  function formatPrice(baseUSD,countryCode){
+    var c = COUNTRIES[countryCode];
+    var raw = baseUSD * c.rate;
+    var rounded;
+    if(countryCode === 'JP'){ rounded = Math.round(raw/100)*100;
+    } else if(countryCode === 'IN'){ rounded = Math.round(raw/100)*100 - 1;
+    } else { rounded = Math.round(raw); }
+    return c.symbol + rounded.toLocaleString('en-US');
+  }
+
+  var lastFocused = null;
+  function openModal(modal){
+    if(!modal) return;
+    lastFocused = document.activeElement;
+    modal.removeAttribute('hidden');
+    var firstField = modal.querySelector('input,textarea,select,button');
+    if(firstField){ setTimeout(function(){ firstField.focus(); }, 60); }
+  }
+  function closeModal(modal){
+    if(!modal) return;
+    modal.setAttribute('hidden','');
+    if(lastFocused && lastFocused.focus){ lastFocused.focus(); }
+  }
+
+  var preorderModal = document.getElementById('preorderModal');
+  var partnershipModal = document.getElementById('partnershipModal');
+
+  document.querySelectorAll('.modal-overlay').forEach(function(overlay){
+    var closeBtn = overlay.querySelector('[data-close-modal]');
+    if(closeBtn){ closeBtn.addEventListener('click', function(){ closeModal(overlay); }); }
+    overlay.addEventListener('click', function(e){
+      if(e.target === overlay){ closeModal(overlay); }
+    });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      document.querySelectorAll('.modal-overlay').forEach(function(overlay){
+        if(!overlay.hasAttribute('hidden')){ closeModal(overlay); }
+      });
+    }
+  });
+
+  function initCard(suffix, hideOnCta){
+    var root = document.getElementById('waitlistCard'+suffix);
+    if(!root) return null;
+    var countrySelect = document.getElementById('countrySelect'+suffix);
+    var sizeSelect = document.getElementById('sizeSelect'+suffix);
+    var sizeLabel = document.getElementById('sizeLabel'+suffix);
+    var priceEl = document.getElementById('cardPrice'+suffix);
+    var nameEl = document.getElementById('cardProductName'+suffix);
+    var imgEl = document.getElementById('cardProductImg'+suffix);
+    var customToggle = document.getElementById('customSizeToggle'+suffix);
+    var customFields = document.getElementById('customSizeFields'+suffix);
+    var ctaBtn = document.getElementById('ctaButton'+suffix);
+    var currentProduct = PRODUCTS[0];
+
+    function renderSizes(){
+      var country = COUNTRIES[countrySelect.value];
+      var standard = SIZE_STANDARDS[country.standard];
+      sizeSelect.innerHTML = '<option value="" disabled selected hidden>Select Size</option>';
+      standard.sizes.forEach(function(s){
+        var opt = document.createElement('option');
+        opt.value = s;
+        opt.textContent = s;
+        sizeSelect.appendChild(opt);
+      });
+      if(sizeLabel){ sizeLabel.textContent = 'Size (' + standard.label + ')'; }
+    }
+
+    function renderPrice(){
+      priceEl.textContent = formatPrice(currentProduct.price, countrySelect.value);
+    }
+
+    function updateProduct(product){
+      currentProduct = product;
+      nameEl.textContent = product.name;
+      imgEl.src = product.cardImage;
+      imgEl.alt = product.name;
+      renderPrice();
+    }
+
+    countrySelect.addEventListener('change', function(){
+      renderSizes();
+      renderPrice();
+    });
+
+    if(customToggle && customFields){
+      customToggle.addEventListener('click', function(){
+        var hidden = customFields.hasAttribute('hidden');
+        if(hidden){
+          customFields.removeAttribute('hidden');
+          customToggle.textContent = '\u2212 Custom Size';
+          sizeSelect.disabled = true;
+          sizeSelect.value = ""; 
+        } else {
+          customFields.setAttribute('hidden','');
+          customToggle.textContent = '+ Custom Size';
+          sizeSelect.disabled = false;
+        }
+      });
+    }
+
+    ctaBtn.addEventListener('click', function(){
+      var customHidden = customFields.hasAttribute('hidden');
+      
+      if(!customHidden) {
+        var inputs = customFields.querySelectorAll('input');
+        for(var i=0; i<inputs.length; i++) {
+          if(!inputs[i].value) {
+            alert("Please enter all Custom Size measurements before reserving.");
+            inputs[i].focus();
+            return; 
+          }
+        }
+      } else {
+        if(!sizeSelect.value) {
+          alert("Please select a size before reserving.");
+          sizeSelect.focus();
+          return; 
+        }
+      }
+
+      // Inject accurate product and sizing data into hidden form fields before opening modal
+      document.getElementById('hiddenProductName').value = currentProduct.name;
+      document.getElementById('hiddenPrice').value = formatPrice(currentProduct.price, countrySelect.value);
+      document.getElementById('hiddenCountry').value = countrySelect.options[countrySelect.selectedIndex].text;
+      
+      if(!customHidden){
+        document.getElementById('hiddenSize').value = 'Custom';
+        document.getElementById('hiddenBust').value = document.getElementById('bustInput'+suffix).value;
+        document.getElementById('hiddenWaist').value = document.getElementById('waistInput'+suffix).value;
+        document.getElementById('hiddenHips').value = document.getElementById('hipsInput'+suffix).value;
+        document.getElementById('hiddenLength').value = document.getElementById('lengthInput'+suffix).value;
+      } else {
+        document.getElementById('hiddenSize').value = sizeSelect.value;
+        document.getElementById('hiddenBust').value = '';
+        document.getElementById('hiddenWaist').value = '';
+        document.getElementById('hiddenHips').value = '';
+        document.getElementById('hiddenLength').value = '';
+      }
+      
+      openModal(preorderModal);
+      if(hideOnCta){
+        root.classList.add('card-fade-out');
+        setTimeout(function(){ root.style.display = 'none'; }, 500);
+      }
+    });
+
+    renderSizes();
+    renderPrice();
+    return { updateProduct: updateProduct };
+  }
+
+  var heroCard = initCard('', true);
+  var room7Card = initCard('2', false);
+
+  var heroClose = document.getElementById('cardClose');
+  if(heroClose){
+    heroClose.addEventListener('click', function(){
+      var card = document.getElementById('waitlistCard');
+      card.classList.add('card-fade-out');
+      setTimeout(function(){ card.style.display = 'none'; }, 500);
+    });
+  }
+
+  var preorderForm = document.getElementById('preorderForm');
+  if(preorderForm){
+    preorderForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var emailInput = document.getElementById('preorderEmail');
+      var isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+      if(!isValid){ emailInput.style.borderColor = '#c8654f'; emailInput.focus(); return; }
+      
+      var submitBtn = preorderForm.querySelector('button[type="submit"]');
+      var originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      var formData = new FormData(preorderForm);
+      formData.append('Form_Type', 'Waitlist / Reservation Request');
+
+      fetch(preorderForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          preorderForm.reset();
+          preorderForm.style.display = 'none';
+          document.getElementById('preorderSuccess').setAttribute('data-show','');
+          setTimeout(function(){ 
+            closeModal(preorderModal); 
+            preorderForm.style.display = 'flex';
+            document.getElementById('preorderSuccess').removeAttribute('data-show');
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+          }, 2000);
+        } else {
+          alert('Submission failed. Please try again.');
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      }).catch(function(error){
+        alert('An error occurred. Please check your connection.');
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  var partnershipTitle = document.getElementById('partnershipModalTitle');
+  document.querySelectorAll('.partnership-links button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if(partnershipTitle){ partnershipTitle.textContent = btn.getAttribute('data-topic'); }
+      openModal(partnershipModal);
+    });
+  });
+
+  var partnershipForm = document.getElementById('partnershipForm');
+  if(partnershipForm){
+    partnershipForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var submitBtn = partnershipForm.querySelector('button[type="submit"]');
+      var originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = 'Submitting...';
+      submitBtn.disabled = true;
+
+      var formData = new FormData(partnershipForm);
+      if(partnershipTitle){
+        formData.append('Topic', partnershipTitle.textContent);
+      }
+
+      fetch('https://formspree.io/f/xgavqjay', {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          partnershipForm.reset();
+          partnershipForm.style.display = 'none';
+          document.getElementById('partnershipSuccess').setAttribute('data-show','');
+          setTimeout(function(){ 
+            closeModal(partnershipModal);
+            partnershipForm.style.display = 'flex';
+            document.getElementById('partnershipSuccess').removeAttribute('data-show');
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+          }, 2000);
+        } else {
+          alert('Submission failed. Please verify your details and try again.');
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      }).catch(function(error){
+        alert('An error occurred. Please check your connection and try again.');
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  var newsletterForm = document.getElementById('newsletterForm');
+  if(newsletterForm){
+    newsletterForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var submitBtn = newsletterForm.querySelector('button[type="submit"]');
+      var originalBtnText = submitBtn.textContent;
+      submitBtn.textContent = '...';
+      submitBtn.disabled = true;
+
+      var formData = new FormData(newsletterForm);
+      formData.append('Form_Type', 'Newsletter Subscription');
+
+      fetch(newsletterForm.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      }).then(function(response){
+        if(response.ok){
+          newsletterForm.reset();
+          newsletterForm.style.display = 'none';
+          document.getElementById('newsletterSuccess').classList.add('show');
+          setTimeout(function(){
+            newsletterForm.style.display = 'flex';
+            document.getElementById('newsletterSuccess').classList.remove('show');
+            submitBtn.textContent = originalBtnText;
+            submitBtn.disabled = false;
+          }, 3000);
+        } else {
+          alert('Subscription failed. Please try again.');
+          submitBtn.textContent = originalBtnText;
+          submitBtn.disabled = false;
+        }
+      }).catch(function(error){
+        alert('An error occurred. Please check your connection.');
+        submitBtn.textContent = originalBtnText;
+        submitBtn.disabled = false;
+      });
+    });
+  }
+
+  var shareModal = document.getElementById('shareModal');
+  var shareBtn = document.getElementById('shareBtn');
+  var copyLinkBtn = document.getElementById('copyLinkBtn');
+
+  if(shareBtn && shareModal){
+    shareBtn.addEventListener('click', function(){
+      openModal(shareModal);
+    });
+  }
+
+  if(copyLinkBtn){
+    copyLinkBtn.addEventListener('click', function(){
+      var dummy = document.createElement('input');
+      document.body.appendChild(dummy);
+      dummy.value = 'https://velvitbysora.com - Get 10% off premium handcrafted dresses!';
+      dummy.select();
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+      
+      var originalText = copyLinkBtn.textContent;
+      copyLinkBtn.textContent = 'Link Copied!';
+      setTimeout(function(){
+        copyLinkBtn.textContent = originalText;
+      }, 2000);
+    });
+  }
+
+  // REDIRECT LOGIC: Clicking the image in Lookbook automatically scrolls down and updates Checkout form
+  document.querySelectorAll('.masonry-item').forEach(function(item){
+    item.addEventListener('click', function(){
+      var productId = item.getAttribute('data-product-id');
+      var product = findProduct(productId);
+      if(product) {
+          room7Card.updateProduct(product);
+          document.getElementById('checkout-room').scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  var items = document.querySelectorAll('.masonry-item');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    },{threshold:.15});
+    items.forEach(function(item){ io.observe(item); });
+  } else {
+    items.forEach(function(item){ item.classList.add('visible'); });
+  }
+
+  document.querySelectorAll('img').forEach(function(img){
+    img.addEventListener('error', function(){ img.style.opacity = '0'; }, { once:true });
+  });
+
+  var unitsRemaining = 45;
+  var unitsTotal = 300;
+  var scarcityMessage = 'High Demand: Only ' + unitsRemaining + ' out of ' + unitsTotal + ' outfits left.';
+  var scarcityEls = [document.getElementById('scarcityText'), document.getElementById('scarcityText2')];
+  scarcityEls.forEach(function(el){ if(el){ el.textContent = scarcityMessage; } });
+
+})();
+</script>
+</body>
+</html>
